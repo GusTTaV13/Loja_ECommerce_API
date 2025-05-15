@@ -1,4 +1,15 @@
+using Loja_ECommerce_API.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+// String de conexão
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// Configurar o DbContext
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+
 // 1. Adiciona CORS
 builder.Services.AddCors(options =>
 {
